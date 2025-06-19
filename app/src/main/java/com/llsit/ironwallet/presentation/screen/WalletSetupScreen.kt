@@ -143,7 +143,6 @@ fun WalletSetupScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // Security Notice
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(

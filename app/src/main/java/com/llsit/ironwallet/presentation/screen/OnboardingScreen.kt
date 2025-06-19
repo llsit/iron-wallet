@@ -49,7 +49,6 @@ fun OnboardingScreen(onGetStarted: () -> Unit) {
         ) {
             Spacer(modifier = Modifier.height(80.dp))
 
-            // Crypto Icons
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.padding(vertical = 40.dp)
@@ -101,20 +100,7 @@ fun OnboardingScreen(onGetStarted: () -> Unit) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            TextButton(
-                onClick = { /* Handle existing wallet */ },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "Use Existing Wallet",
-                    color = Color.White,
-                    fontSize = 16.sp
-                )
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(48.dp))
         }
     }
 }
