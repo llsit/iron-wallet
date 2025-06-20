@@ -22,7 +22,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.llsit.ironwallet.common.BaseContentAppScreen
 import com.llsit.ironwallet.presentation.component.SecurityFeatureItem
 
 @Composable
@@ -40,18 +40,7 @@ fun CreateNewWalletScreen(
     onCreateWallet: () -> Unit,
     onBack: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1A1A1A),
-                        Color(0xFF000000)
-                    )
-                )
-            )
-    ) {
+    BaseContentAppScreen {
         Column(
             modifier = Modifier
                 .fillMaxSize()

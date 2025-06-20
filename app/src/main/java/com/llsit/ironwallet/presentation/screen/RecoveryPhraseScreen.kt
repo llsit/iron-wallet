@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.llsit.ironwallet.common.BaseContentAppScreen
 import com.llsit.ironwallet.presentation.component.RecoveryWordItem
 
 @Composable
@@ -48,18 +49,7 @@ fun RecoveryPhraseScreen(
         "cup", "", ""
     )
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1A1A1A),
-                        Color(0xFF000000)
-                    )
-                )
-            )
-    ) {
+    BaseContentAppScreen {
         Column(
             modifier = Modifier
                 .fillMaxSize()
