@@ -165,21 +165,6 @@ fun CreateNewWalletScreen(
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-
-            // Alternative option
-            TextButton(
-                onClick = { /* Handle import wallet */ },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "Import Existing Wallet",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium
-                )
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }

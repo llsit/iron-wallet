@@ -4,19 +4,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.llsit.ironwallet.presentation.screen.BiometricSetupScreen
+import com.llsit.ironwallet.presentation.screen.CreateNewWalletScreen
+import com.llsit.ironwallet.presentation.screen.ImportWalletScreen
 import com.llsit.ironwallet.presentation.screen.MainWalletScreen
 import com.llsit.ironwallet.presentation.screen.OnboardingScreen
 import com.llsit.ironwallet.presentation.screen.RecoveryPhraseScreen
+import com.llsit.ironwallet.presentation.screen.WalletSetupScreen
 import com.llsit.ironwallet.ui.theme.IronWalletTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,27 +29,70 @@ class MainActivity : ComponentActivity() {
         setContent {
             IronWalletTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Web3WalletApp(innerPadding)
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        Web3WalletApp()
+                    }
                 }
             }
         }
     }
 }
 
+enum class MainScreen() {
+    Onboarding,
+    SetupWallet,
+    ImportWallet,
+    CreateWallet,
+    BiometricAuth,
+    MainWallet,
+    RecoveryPhrase,
+}
+
 @Composable
-fun Web3WalletApp(innerPadding: PaddingValues) {
-    var currentScreen by remember { mutableIntStateOf(0) }
-
-    when (currentScreen) {
-        0 -> OnboardingScreen { currentScreen = 1 }
-        1 -> MainWalletScreen(
-            onRecoveryPhrase = { currentScreen = 2 },
-            onBack = { currentScreen = 0 }
-        )
-
-        2 -> RecoveryPhraseScreen(
-            onBack = { currentScreen = 1 },
-            onSaved = { currentScreen = 1 }
-        )
+fun Web3WalletApp() {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = MainScreen.Onboarding.name) {
+        composable(route = MainScreen.Onboarding.name) {
+            OnboardingScreen {
+                navController.navigate(MainScreen.SetupWallet.name)
+            }
+        }
+        composable(route = MainScreen.SetupWallet.name) {
+            WalletSetupScreen(
+                onCreateWallet = { navController.navigate(MainScreen.CreateWallet.name) },
+                onImportWallet = { navController.navigate(MainScreen.ImportWallet.name) },
+                onBack = { navController.navigate(MainScreen.Onboarding.name) }
+            )
+        }
+        composable(route = MainScreen.ImportWallet.name) {
+            ImportWalletScreen(
+                onBack = { navController.navigate(MainScreen.SetupWallet.name) },
+                onImported = { navController.navigate(MainScreen.MainWallet.name) }
+            )
+        }
+        composable(route = MainScreen.CreateWallet.name) {
+            CreateNewWalletScreen(
+                onBack = { navController.navigate(MainScreen.SetupWallet.name) },
+                onCreateWallet = { navController.navigate(MainScreen.MainWallet.name) }
+            )
+        }
+        composable(MainScreen.RecoveryPhrase.name) {
+            RecoveryPhraseScreen(
+                onBack = { navController.navigate(MainScreen.CreateWallet.name) },
+                onSaved = { navController.navigate(MainScreen.BiometricAuth.name) }
+            )
+        }
+        composable(MainScreen.BiometricAuth.name) {
+            BiometricSetupScreen(
+                onBack = { navController.navigate(MainScreen.CreateWallet.name) },
+                onComplete = { navController.navigate(MainScreen.MainWallet.name) }
+            )
+        }
+        composable(MainScreen.MainWallet.name) {
+            MainWalletScreen(
+                onRecoveryPhrase = { navController.navigate(MainScreen.RecoveryPhrase.name) },
+                onBack = { navController.navigate(MainScreen.Onboarding.name) }
+            )
+        }
     }
 }
