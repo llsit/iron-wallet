@@ -1,23 +1,24 @@
 [versions]
-agp = "8.10.1"
-kotlin = "2.0.21"
+agp = "8.11.0"
+kotlin = "2.2.0"
+ksp = "2.2.0-2.0.2"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
-composeBom = "2025.06.00"
+composeBom = "2025.06.01"
 hilt = "2.56.2"
 hilt-compiler = "1.0.0"
 hilt-navigation = "1.2.0"
 hilt-ksp = "1.2.0"
 web3j = "5.0.0"
-tink = "1.6.1"
+tink = "1.18.0"
 security = "1.1.0-beta01"
 biometric = "1.1.0"
-coroutines = "1.8.1"
-navigationCompose = "2.7.6"
+coroutines = "1.10.2"
+navigationCompose = "2.9.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,4 +54,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.25" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
