@@ -61,6 +61,9 @@ class BaselineProfileGenerator {
             // 2. Scroll the feed content
             // 3. Navigate to detail screen
 
+            // CodeLab
+            // https://codelabs.developers.google.com/android-baseline-profiles-improve#4
+
             // Check UiAutomator documentation for more information how to interact with the app.
             // https://d.android.com/training/testing/other-components/ui-automator
         }
