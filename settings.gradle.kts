@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "IronWallet"
 include(":app")
- 
+include(":baselineprofile")
